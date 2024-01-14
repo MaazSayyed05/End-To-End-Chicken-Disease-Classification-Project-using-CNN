@@ -27,6 +27,8 @@ list_of_files = [
     "test.py",
     "setup.py",
     "dvc.yaml",  #### MLOPs
+    'templates/index.html',
+    'static/css/index.css'
 ]
 
 for file_path in list_of_files:
