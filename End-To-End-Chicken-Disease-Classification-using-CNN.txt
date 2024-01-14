@@ -1,0 +1,33 @@
+End-To-End Chicken Disease Classification Project using CNN
+3 Classes - Healthy, Coccidiosis, Salmonella.
+** Here, we will take 2050 images for each class.
+
+1. GitHub Repository Setup.
+2. Project Template Creation (template.py) [Creating Folders in Pythonic Way].
+3. Setup Virtual Environment (using conda prompt),Project Setup and Requirements Installation.
+4. Logging (src/chicken-disease-classification/__init__.py), Utils(ensure_annotations), and Exception Module(Box Exceptions).
+5. Project Workflows(README.md).
+    {	
+		I. Update config.yaml.
+		II. Update params.yaml.
+		III. Update entity.
+		IV. Update the  configuration manager in src config.
+		V. Update the components.
+		VI. Update the Pipeline.
+		VII. Update main.py.
+		VIII. Update app.py
+    }
+6. All Components NoteBooks
+    {
+	01_data_ingestion.ipynb
+	02_data_validation.ipynb
+	03_data_transformation.ipynb
+	04_model_trainer.ipynb
+	05_model_evaluation.ipynb
+    }
+7. All Components Modular Code Implementation.
+8. Training Pipeline(data_ingestion, data_evaluation, data_transformation, model_training, model_evaluation).
+9. DVC[Data Version Control](MLOPs Tool)- For Pipeline Tracking and Implementation.
+10. Prediction Pipeline and User App Creation (FastAPI).
+11. Docker
+12. Final CI/CD Deployment on AWS (Using GitHub Actions)
