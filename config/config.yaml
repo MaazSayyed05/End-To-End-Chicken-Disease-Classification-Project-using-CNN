@@ -1,0 +1,11 @@
+artifacts_root : artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_url: https://www.kaggle.com/datasets/muhammadmaazsayyed/chicken-disease-dataset/download?datasetVersionNumber=1
+  unzip_dir: artifacts/data_ingestion
+  kaggle_api_key: .kaggle/kaggle.json
+
+
+
+

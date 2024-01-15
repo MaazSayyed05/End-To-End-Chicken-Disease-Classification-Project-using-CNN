@@ -161,3 +161,7 @@ cython_debug/
 
 
 logs/*
+
+artifacts/*
+
+.kaggle/*

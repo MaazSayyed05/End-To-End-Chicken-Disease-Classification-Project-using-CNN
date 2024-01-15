@@ -16,6 +16,10 @@ from typing import Any
 
 import base64
 
+from kaggle.api.kaggle_api_extended import KaggleApi
+import subprocess
+
+from chicken_disease_classification import logger
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -52,7 +56,7 @@ def create_directories(path_to_directories: list, verbose=True):
     """
 
     for path in path_to_directories:
-        os.amkedirs(path, exist_ok=True)
+        os.makedirs(path, exist_ok=True)
 
         if verbose:
             logger.info(f"Created Directory at {path}.")
@@ -142,4 +146,59 @@ def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
 
+
+
+
+# @ensure_annotations
+
+# def download_kaggle_dataset(dataset_name, output_folder, kaggle_username, kaggle_key):
+#     """
+#     Download a Kaggle dataset and save it to a local folder if it doesn't exist.
+
+#     Parameters:
+#     - dataset_name: Name of the Kaggle dataset (e.g., 'username/dataset-name')
+#     - output_folder: Path to the local folder where the dataset will be saved
+#     - kaggle_username: Your Kaggle username
+#     - kaggle_key: Your Kaggle API key
+#     """
+#     # Set Kaggle API credentials
+#     api = KaggleApi()
+#     # api.authenticate(username=kaggle_username, key=kaggle_key)
+
+#     # Create the output folder if it doesn't exist
+#     os.makedirs(output_folder, exist_ok=True)
+#     print("Creating output folder")
+#     # Check if the dataset already exists in the output folder
+#     dataset_path = os.path.join(output_folder, dataset_name.split("/")[-1])
+#     if os.path.exists(dataset_path):
+#         logger.info(f"Dataset already exists in: {dataset_path}")
+#         # print("")
+#         return
+
+#     print("Downloading dataset")
+#     # Download the dataset
+#     api.dataset_download_files(dataset_name, path=dataset_path, unzip=True)
+#     # logger.info(f"Dataset downloaded and saved to: {dataset_path}")
+
+
+@ensure_annotations
+def download_kaggle_dataset(username, dataset_name, output_path):
+    """
+    Download a Kaggle dataset using the Kaggle API command.
+
+    Parameters:
+    - username: Kaggle username
+    - dataset_name: Name of the Kaggle dataset
+    - output_path: Local path to save the downloaded dataset (default is current directory)
+    """
+    # Construct the Kaggle API command
+    command = f'!kaggle datasets download -d {username}/{dataset_name}t -p {output_path}'
+
+
+    try:
+        # Run the command in the terminal
+        subprocess.run(command, shell=True, check=True)
+        print(f"Dataset downloaded successfully to: {output_path}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
 
