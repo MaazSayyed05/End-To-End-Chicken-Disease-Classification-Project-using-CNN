@@ -1,6 +1,7 @@
 End-To-End Chicken Disease Classification Project using CNN
+VGG-16
 3 Classes - Healthy, Coccidiosis, Salmonella.
-** Here, we will take 2050 images for each class.
+** Here, we will take 2051 images for each class.
 
 1. GitHub Repository Setup.
 2. Project Template Creation (template.py) [Creating Folders in Pythonic Way].
@@ -20,14 +21,11 @@ End-To-End Chicken Disease Classification Project using CNN
 6. All Components NoteBooks
     {
 	01_data_ingestion.ipynb
-	02_data_validation.ipynb
-	03_data_transformation.ipynb
-	04_model_trainer.ipynb
-	05_model_evaluation.ipynb
+	02_prepare_base_model.ipynb
     }
 7. All Components Modular Code Implementation.
-8. Training Pipeline(data_ingestion, data_evaluation, data_transformation, model_training, model_evaluation).
-9. DVC[Data Version Control](MLOPs Tool)- For Pipeline Tracking and Implementation.
+8. Training Pipeline(data_ingestion, prepare Base Model, data_transformation, model_training, model_evaluation).
+9. DVC[Data Version Control](MLOPs Tool)- For Pipeline Tracking and Implementation. (Lastly we will upload)
 10. Prediction Pipeline and User App Creation (FastAPI).
 11. Docker
 12. Final CI/CD Deployment on AWS (Using GitHub Actions)

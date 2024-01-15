@@ -4,3 +4,15 @@ data_ingestion:
   kaggle_username: muhammadmaazsayyed
 
 
+
+vgg_16:
+  AUGMENTATION: True
+  IMAGE_SIZE: [224, 224, 3] # As pre Vgg-16 Model
+  BATCH_SIZE: 16
+  NUM_EPOCHS: 1
+  LEARNING_RATE: 0.01
+  WEIGHTS: imagenet
+  INCLUDE_TOP: False
+  CLASSES: 3
+
+  
