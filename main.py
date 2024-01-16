@@ -2,6 +2,7 @@
 from chicken_disease_classification import logger
 from chicken_disease_classification.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from chicken_disease_classification.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
+from chicken_disease_classification.pipeline.stage_02_prepare_callbacks import PrepareCallbacksTrainingPipeline
 
 STAGE_NAME = 'Data Ingestion Stage'
 
@@ -28,5 +29,6 @@ try:
 except Exception as e:
     logger.error(f'>>>>>>>> {STAGE_NAME} Failed <<<<<<<')
     raise e
+
 
 
