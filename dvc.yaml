@@ -1,4 +1,81 @@
 
+# See Entity for refrence dependencies
+
+
+stages:
+  data_ingestion:
+    cmd: python src/chicken_disease_classification/pipeline/stage_01_data_ingestion.py ## command to run
+    deps: ## dependencies 
+      - src/chicken_disease_classification/pipeline/stage_01_data_ingestion.py
+      - config/config.yaml
+    outs: ## output
+      - artifacts/data_ingestion/chicken-disease-dataset/poultry_diseases
+
+
+  prepare_base_model:
+    cmd: python src/chicken_disease_classification/pipeline/stage_02_prepare_base_model.py
+    deps: ## dependencies
+      - src/chicken_disease_classification/pipeline/stage_02_prepare_base_model.py
+      - config/config.yaml
+      - params.yaml
+
+    params:
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    
+    outs: ## output
+      - artifacts/prepare_base_model  
+
+
+  training:
+    cmd: python src/chicken_disease_classification/pipeline/stage_03_model_training.py
+
+    deps: ## dependencies
+      - src/chicken_disease_classification/pipeline/stage_03_model_training.py
+      - src/chicken_disease_classification/components/prepare_callbacks.py
+      - config/config.yaml
+      - params.yaml
+      - artifacts/prepare_base_model
+      - artifacts/data_ingestion/chicken-disease-dataset/poultry_diseases
+
+    params:
+      - BATCH_SIZE
+      - EPOCHS
+      - AUGMENTATION
+      - IMAGE_SIZE
+    
+    outs: ## output
+      - artifacts/training/model.h5
+
+
+  evaluation:
+    cmd: python src/chicken_disease_classification/pipeline/stage_04_model_evaluation.py
+
+    deps: ## dependencies
+      - src/chicken_disease_classification/pipeline/stage_04_model_evaluation.py
+      - config/config.yaml
+      - params.yaml
+      - artifacts/training/model.h5
+      - artifacts/data_ingestion/chicken-disease-dataset/poultry_diseases
+
+    params:
+      - BATCH_SIZE
+      - IMAGE_SIZE
+    
+    metrics:
+    - scores.json:
+        cache: false
 
 
 
+# How to run dvc.yaml:
+# 1. Check if git is initialized (.git)
+# 2. Open Terminal
+# 3. write command    dvc init
+# 4. check .dvcignore is created 
+# 5. for executing pipeline   dvc repro
+# 6. for meta data of dvc pipeline  check   dvc.lock
+# 7. How pipeline is running using graph    dvc dag
