@@ -6,6 +6,7 @@ from chicken_disease_classification.entity.config_entity import DataIngestionCon
 from chicken_disease_classification.entity.config_entity import PrepareBaseModelConfig
 from chicken_disease_classification.entity.config_entity import PrepareCallbacksConfig
 from chicken_disease_classification.entity.config_entity import TrainingConfig
+from chicken_disease_classification.entity.config_entity import EvaluationConfig
 
 import os
 from pathlib import Path
@@ -107,5 +108,20 @@ class ConfigurationManager:
         )
 
         return training_config
+
+
+
+        
+    def get_evaluation_config(self) -> EvaluationConfig:
+        
+        eval_config = EvaluationConfig(
+            path_of_model = 'artifacts/training/model.h5',
+            training_data = 'artifacts/data_ingestion/chicken-disease-dataset/poultry_diseases',
+            all_params = self.params,
+            params_image_size = self.params.vgg_16.IMAGE_SIZE,
+            params_batch_size = self.params.vgg_16.BATCH_SIZE
+        )
+
+        return eval_config 
 
 

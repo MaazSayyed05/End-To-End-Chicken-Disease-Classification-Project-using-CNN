@@ -25,6 +25,7 @@ VGG-16
 		02_prepare_base_model.ipynb
 		03_prepare_callbacks.ipynb ## (No ned of Pipeline)
 		04_model_training.ipynb
+		05_model_evaluation.ipynb
     
 	}
 7. All Components Modular Code Implementation.
